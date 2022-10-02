@@ -6,9 +6,21 @@ import { LevelOneState } from 'src/@types/levelOne';
 const initialState: LevelOneState = {
     isLoading: false,
     error: null,
-    firstSwitch: false,
-    secondSwitch: false,
-    thirdSwitch: false,
+    firstSwitch:{
+        on: false,
+        x: null,
+        y: null
+    },
+    secondSwitch:{
+        on: false,
+        x: null,
+        y: null
+    },
+    thirdSwitch:{
+        on: false,
+        x: null,
+        y: null
+    },
 };
 
 const slice = createSlice({
@@ -24,22 +36,34 @@ const slice = createSlice({
             state.error = action.payload;
         },
         firstSwitchOn: (state) => {
-            state.firstSwitch = true;
+            state.firstSwitch.on = true;
         },
         firstSwitchOff: (state) => {
-            state.firstSwitch = false;
+            state.firstSwitch.on = false;
+        },
+        setFirstSwitchXY: (state, action) => {
+            state.firstSwitch.x = action.payload.x;
+            state.firstSwitch.y = action.payload.y;
         },
         secondSwitchOn: (state) => {
-            state.secondSwitch = true;
+            state.secondSwitch.on = true;
         },  
         secondSwitchOff: (state) => {
-            state.secondSwitch = false;
+            state.secondSwitch.on = false;
+        },
+        setSecondSwitchXY: (state, action) => {
+            state.secondSwitch.x = action.payload.x;
+            state.secondSwitch.y = action.payload.y;
         },
         thirdSwitchOn: (state) => {
-            state.thirdSwitch = true;
+            state.thirdSwitch.on = true;
         },
         thirdSwitchOff: (state) => {
-            state.thirdSwitch = false;
+            state.thirdSwitch.on = false;
+        },
+        setThirdSwitchXY: (state, action) => {
+            state.thirdSwitch.x = action.payload.x;
+            state.thirdSwitch.y = action.payload.y;
         },
     },
 });
@@ -51,10 +75,13 @@ export const {
     hasError,
     firstSwitchOn,
     firstSwitchOff,
+    setFirstSwitchXY,
     secondSwitchOn,
     secondSwitchOff,
+    setSecondSwitchXY,
     thirdSwitchOn,
     thirdSwitchOff,
+    setThirdSwitchXY,
 } = slice.actions;
 
 // ! add async thunks here
